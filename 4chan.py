@@ -31,6 +31,7 @@ async def parser(section):
     countries_4chan = pd.DataFrame(Counter(flags).items(), columns=["Country Name", "num"])
     out = pd.merge(countries_4chan, countries_2021, how='left', on='Country Name')
     out['res'] = out['num']/out['2021']
+    out.drop("2021", axis=1, inplace=True)
     out.sort_values(by=['res'], ascending=False).to_csv('data/' + section + '/' + today + '.csv', index=False, encoding='utf-8')
 
 
