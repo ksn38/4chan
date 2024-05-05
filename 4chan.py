@@ -11,13 +11,14 @@ today = str(date.today())
 
 async def parser(section):
     headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36'}
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36'}
     t_dict = OrderedDict()
 
-    url = 'https://boards.4chan.org/' + section + '/'
+    url = 'https://boards.4channel.org/' + section + '/'
     flags = []
 
     for i in range(90):
+        print(i)
         response = requests.get(url, headers=headers).text
         parsed_html = bs(response, 'lxml')
         t = parsed_html.find_all('span', {'class': 'flag'})
